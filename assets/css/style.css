@@ -1,0 +1,25 @@
+* {
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    background-color: black;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.options {
+    background-color: white;
+    padding: 5px;
+    border: 2px solid gray;
+    color: black;
+}
+
+.card {
+    background-color: gray;
+    margin: 50px;
+    padding: 5px;
+    border: 3px solid white;
+}
