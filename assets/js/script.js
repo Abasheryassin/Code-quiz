@@ -1,11 +1,12 @@
-// GIVEN I am taking a code quiz
 var startEl = document.getElementById('button');
 var timerEl = document.getElementById('timer');
 var timeLeft = 60;
+
 // WHEN I click the start button
 // THEN a timer starts and I am presented with a question
 function startGame() {
     // Game starts to run
+    startEl.disabled = true;
     startTimer();
     showQuestions();
     
@@ -15,6 +16,15 @@ function startGame() {
 
 function startTimer() {
     // Timer starters counting down
+    var timer = setInterval(function() {
+        timeLeft--;
+        timerEl.textContent = 'Timer: ' + timeLeft;
+        if (timeLeft === 0) {
+            timerEl.textcontent = 'Timer: 0';
+            clearInterval(timer);
+            endGame();
+        }
+    }, 1000);
     
     console.log("Inside startTimer");
 }
