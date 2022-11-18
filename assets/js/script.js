@@ -5,7 +5,8 @@ var timerEl = document.getElementById('timer');
 var questionBox = document.getElementById('box');
 var displayScore = document.getElementById('high');
 var finalScore = document.getElementById('score');
-var userInital = document.getElementById('user');
+var userInital = document.getElementById('submit');
+var user = document.getElementById('user');
 var timer;
 var timeLeft;
 var shownAnswer;
@@ -61,7 +62,7 @@ function startTimer() {
 }
 
 function showQuestions() {
-
+    
     shownQuestion = document.createElement('h1');
     answerOptions = document.createElement('ol');
     shownQuestion.textContent = questions[x].title;
@@ -78,6 +79,7 @@ function showQuestions() {
         
         shownAnswer.appendChild(chosen);
         answerOptions.appendChild(shownAnswer);
+        answerOptions.addEventListener('click', checkAnswer);
     }
 }
 
@@ -115,14 +117,18 @@ function endGame(score) {
     displayScore.classList.remove('hide');
     finalScore.textContent = 'Congradulations you scored ' + score;
 
-    userInital.addEventListener('submit', displayHighscores);
-    inital = userInital.value;
+    userInital.addEventListener('click', displayHighscores)
 }
-console.log(inital);
-function displayHighscores() {
 
+function displayHighscores(event) {
+    var ele = event.target; 
+
+    if (ele.matches('button') === true) {
+        var what = user.value.textContent;
+        console.log(what);
+
+    }
 }
 // need to add event listener for the button to start the game
 startEl.addEventListener('click', startGame);
 // need to add event listener for answer buttons
-questionBox.addEventListener('click', checkAnswer);
