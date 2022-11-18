@@ -3,30 +3,36 @@
 var startEl = document.getElementById('button');
 var timerEl = document.getElementById('timer');
 var questionBox = document.getElementById('box');
+var displayScore = document.getElementById('high');
+var finalScore = document.getElementById('score');
+var userInital = document.getElementById('user');
 var timer;
 var timeLeft;
 var shownAnswer;
 var shownQuestion;
 var answerOptions;
-var displayScore;
-var initals;
+var displayHighscores;
+var initalInput;
+var highscores;
 var check;
 var x = 0;
 var score = 0;
+var allHighscores = [];
+var inital;
 
 var questions = [
-    {title: "What does s stand for in js",
-    choices: ["sam", "slam", "chirs", "script"],
+    {title: "Hoe do you retrive informaiton from local storage?",
+    choices: [".getAttribute", ".setAttribute", ".giveAttribute", ".saveAttribute"],
+    answer: ".setAttribute"},
+    {title: "What does 's' stand for in js",
+    choices: ["sample", "save", "sans", "script"],
     answer: "script"},
-    {title: "What does e stand for in js",
-    choices: ["sam", "slam", "chirs", "script"],
-    answer: "script"},
-    {title: "What does f stand for in js",
-    choices: ["sam", "slam", "chirs", "script"],
-    answer: "script"},
-    {title: "What does p stand for in js",
-    choices: ["sam", "slam", "chirs", "script"],
-    answer: "script"}
+    {title: "How do you display information on the console",
+    choices: ["console.log()", "console.show()", "console.give()", "IDK"],
+    answer: "console.log()"},
+    {title: "What symbols is used to house an object",
+    choices: ["''", "()", "{}", "[]"],
+    answer: "{}"}
 ]
 
 // WHEN I click the start button
@@ -34,7 +40,7 @@ var questions = [
 function startGame() {
     // Game starts to run
     timeLeft = 60;
-    startEl.disabled = true;
+    startEl.setAttribute('class','hide');
 
     startTimer();
     showQuestions();
@@ -46,7 +52,7 @@ function startTimer() {
         timeLeft--;
         timerEl.textContent = 'Timer: ' + timeLeft;
 
-        if (timeLeft === 0) {
+        if (timeLeft === 0 || score != 0) {
             timerEl.textcontent = 'Timer: 0';
             clearInterval(timer);
             endGame(score);
@@ -95,6 +101,8 @@ function checkAnswer(event) {
         x++;
         showQuestions(x);
     } else {
+        shownQuestion.setAttribute('class', 'hide');
+        answerOptions.setAttribute('class', 'hide');
         score = timeLeft;
         endGame(score);
     }
@@ -104,16 +112,16 @@ function checkAnswer(event) {
 // THEN I can save my initials and my score
 function endGame(score) {
     // Display socre and prompt for initals
-    displayScore = document.createElement('h1');
-    initals = document.createElement('input');
+    displayScore.classList.remove('hide');
+    finalScore.textContent = 'Congradulations you scored ' + score;
 
-    displayScore.textContent = 'Congradualtions you scored ' + score + ' on this quiz! Enter you initals below.';
-
-
-    questionBox.appendChild(displayScore);
-    questionBox.appendChild(initals);
+    userInital.addEventListener('submit', displayHighscores);
+    inital = userInital.value;
 }
+console.log(inital);
+function displayHighscores() {
 
+}
 // need to add event listener for the button to start the game
 startEl.addEventListener('click', startGame);
 // need to add event listener for answer buttons
