@@ -17,6 +17,10 @@ nav {
     color: black;
 }
 
+input {
+    color: white;
+}
+
 .card {
     background-color: gray;
     margin: 50px;
@@ -35,4 +39,13 @@ li button {
     background-color: white;
     color: black;
     padding-left: 20px;
+}
+
+.hide {
+    display: none;
+}
+
+#submit {
+    background-color: white;
+    color: black;
 }
